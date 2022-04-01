@@ -3,18 +3,54 @@ import { LightningElement } from 'lwc';
 export default class MainCanvas extends LightningElement {
 
     sample = null;
+    imageBaseUrl = 'https://image.tmdb.org/t/p/w500'
+    trendingMovies = [];
+    inTheaters = [];
+    popularFamily = [];
+    popularComedy = [];
+    popularAction = [];
 
     async connectedCallback(){
 
-        let url =
-        'https://api.themoviedb.org/3/trending/movie/week?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&';
+        //&with_release_type=2|3
+
+        let trendingURl =
+        'https://api.themoviedb.org/3/trending/movie/week?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&page=1';
+
+        let theatersUrl =
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&page=1&region=US&with_release_type=3';
+
+        let familyUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=10751';
+
+        let comedyUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=35';
+
+        let actionUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=28';
 
         try {
-            let response = await fetch(url);
-            let data = await response.json();
-            console.log(data);
+            let responses = await Promise.all([
+                fetch(trendingURl),
+                fetch(theatersUrl),
+                fetch(familyUrl),
+                fetch(comedyUrl),
+                fetch(actionUrl),
+            ])
+            let [trending, inTh, fam, com, act ] = responses;
+            trending = await trending.json();
+            inTh = await inTh.json();
+            fam = await fam.json();
+            com = await com.json();
+            act = await act.json();
+            this.trendingMovies = trending.results;
+            this.inTheaters = inTh.results;
+            this.popularFamily = fam.results;
+            this.popularComedy = com.results;
+            this.popularAction = act.results;
 
-            this.sample = `https://image.tmdb.org/t/p/original${data.results[0].poster_path}`
+            console.log('trending', this.trendingMovies);
+            console.log('in theaters', this.inTheaters);
+            console.log('family', this.popularFamily);
+            console.log('comedy', this.popularComedy);
+            console.log('action', this.popularAction);
         } catch (e) {
             console.log(e);        
         }
@@ -27,8 +63,8 @@ export default class MainCanvas extends LightningElement {
 
 components =====
 
-navBar  - brand, movie( genres ) search bar
-banner with search
++ navBar  - brand, movie( genres ) search bar
++ poster 
 groupSet
 movieCard
 movieDetails

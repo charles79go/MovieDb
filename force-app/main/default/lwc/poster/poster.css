@@ -1,0 +1,22 @@
+.poster-wrapper {
+    position: relative;
+}
+
+.poster {
+    height: 25rem;
+    background-image: url('/resource/posterImage');
+    background-position: 50% 75%;
+    filter: brightness(0.4);
+    background-color: #000000;
+}
+
+.poster-headline {
+    color: #ffffff;
+    font-size: 6rem;
+    text-align: center;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
