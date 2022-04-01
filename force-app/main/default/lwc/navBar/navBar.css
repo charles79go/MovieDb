@@ -41,3 +41,12 @@
 .input-wrapper {
     display: flex;
 }
+.search-button-wrapper {
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s all;
+}
+.search-button-wrapper:hover {
+    background: #b6b5b5;
+}

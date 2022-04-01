@@ -5,17 +5,29 @@
                 <span class="slds-avatar slds-avatar_large img-wrapper">
                     <img alt="Person name" src={mvlogo} title="Person name" />
                 </span>
-                <span class="brand-name">Movie Night</span>
+                <span class="brand-name">MovieBase</span>
             </span>
 
             <div class="input-wrapper slds-m-left_large">
-                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                <!-- <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
                     <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
                         <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
                     </svg>
                     <input type="text" id="text-input-id-51" placeholder="Search Movies" class="slds-input" />
+                </div> -->
+                <!-- <lightning-button label="Search" title="Search Button" onclick={searchMovie} class="slds-m-left_x-small"></lightning-button> -->
+                <div class="slds-form-element__control">
+                    <input type="text" id="text-input-id-47" placeholder="Search Movies" class="slds-input" />
                 </div>
-                <lightning-button label="Search" title="Search Button" onclick={searchMovie} class="slds-m-left_x-small"></lightning-button>
+                <div class="search-button-wrapper" onclick={searchMovie}>
+                    <button class="slds-button slds-button_icon slds-button_icon-border-filled" title="Search">
+                        <svg class="slds-button__icon" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Search</span>
+                    </button>
+                </div>
+
             </div>
 
         </div>
