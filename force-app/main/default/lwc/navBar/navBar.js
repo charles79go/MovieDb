@@ -5,14 +5,25 @@ export default class NavBar extends LightningElement {
 
     isLoaded = false;
     mvlogo = movieNightLogo;
+    searchText = '';
 
-    searchMovie(){
-        console.log('search clicked');
+    handleInput(e) {
+        if (e.keyCode === 13) {
+            this.sendEvent(this.searchText);
+            this.searchText = '';
+            return;
+        }
+        this.searchText = e.target.value;
     }
 
-    // async renderedCallback(){
-    //     if(isLoaded) return;
+    searchMovie(e){
+        this.sendEvent(this.searchText);
+        this.searchText = '';
 
-        
-    // }
+    }
+
+    sendEvent(value){
+        const cusEvent = new CustomEvent('searchbtnclick', {detail: value});
+        this.dispatchEvent(cusEvent);
+    }
 }

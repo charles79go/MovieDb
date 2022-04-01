@@ -1,16 +1,26 @@
 <template>
+    <template if:true={isLoading}>
+        <c-spinner></c-spinner>
+    </template>
 
-    <c-nav-bar></c-nav-bar>
+    <c-nav-bar onsearchbtnclick={searchMoviesFn}></c-nav-bar>
 
+    <template if:false={showSearch}>
+        <c-poster img={posterBg}></c-poster>
+    </template>
 
-    <c-poster img={posterBg}></c-poster>
 
     <div class="main-section"> 
-        <c-group-set group-title="Trending Movies" movie-list={trendingMovies} image-base-url={imageBaseUrl}></c-group-set>
-        <c-group-set group-title="In Theaters" movie-list={inTheaters} image-base-url={imageBaseUrl}></c-group-set>
-        <c-group-set group-title="Popular Family Movies" movie-list={popularFamily} image-base-url={imageBaseUrl}></c-group-set>
-        <c-group-set group-title="Popular Comedy Movies" movie-list={popularComedy} image-base-url={imageBaseUrl}></c-group-set>
-        <c-group-set group-title="Popular Action Movies" movie-list={popularAction} image-base-url={imageBaseUrl}></c-group-set>
+        <template if:true={showSearch}>
+            <div>search panel</div>
+        </template>
+        <template if:false={showSearch}>
+            <c-group-set group-title="Trending Movies" movie-list={trendingMovies} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="In Theaters" movie-list={inTheaters} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="Popular Family Movies" movie-list={popularFamily} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="Popular Comedy Movies" movie-list={popularComedy} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="Popular Action Movies" movie-list={popularAction} image-base-url={imageBaseUrl}></c-group-set>
+        </template>
     </div>
     <c-footer></c-footer>
 </template>

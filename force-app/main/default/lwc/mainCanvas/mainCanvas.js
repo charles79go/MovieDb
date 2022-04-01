@@ -10,6 +10,45 @@ export default class MainCanvas extends LightningElement {
     popularComedy = [];
     popularAction = [];
 
+    searchResults = [];
+    showSearch = false;
+
+    isLoading = true;
+
+    async searchMoviesFn(e){
+
+        let searchQuery = e.detail;
+
+        this.isLoading = true;
+
+        const getUrl = (query, page) => {
+            return `https://api.themoviedb.org/3/search/movie?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&query=${query}&page=${page}&include_adult=false`;
+        }
+
+        try {
+            let responses = await Promise.all([
+                fetch(getUrl(searchQuery, 1)),
+                fetch(getUrl(searchQuery, 2)),
+                fetch(getUrl(searchQuery, 3)),
+            ])
+            let [page1, page2, page3] = responses;
+            page1 = await page1.json();
+            page2 = await page2.json();
+            page3 = await page3.json();
+            this.searchResults = [
+                ...page1.results,
+                ...page2.results,
+                ...page3.results ];
+            this.showSearch = true;
+            this.isLoading = false;
+
+        } catch(e) {
+            console.log('error', e)
+            this.isLoading = false;
+        }
+    }
+
+
     async connectedCallback(){
 
         //&with_release_type=2|3
@@ -25,6 +64,8 @@ export default class MainCanvas extends LightningElement {
         let comedyUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=35';
 
         let actionUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=28';
+
+        this.isLoading = true;
 
         try {
             let responses = await Promise.all([
@@ -51,8 +92,11 @@ export default class MainCanvas extends LightningElement {
             console.log('family', this.popularFamily);
             console.log('comedy', this.popularComedy);
             console.log('action', this.popularAction);
+
+            this.isLoading = false;
         } catch (e) {
-            console.log(e);        
+            console.log(e);    
+            this.isLoading = false;    
         }
     }
 }
