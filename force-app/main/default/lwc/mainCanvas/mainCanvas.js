@@ -11,13 +11,22 @@ export default class MainCanvas extends LightningElement {
     popularAction = [];
 
     searchResults = [];
+    searchValue = '';
     showSearch = false;
 
     isLoading = true;
 
+
+
+    returnToHomeFn(){
+        this.showSearch = false;
+        this.searchValue = '';
+    }
+
     async searchMoviesFn(e){
 
         let searchQuery = e.detail;
+        this.searchValue = e.detail;
 
         this.isLoading = true;
 
@@ -86,13 +95,6 @@ export default class MainCanvas extends LightningElement {
             this.popularFamily = fam.results;
             this.popularComedy = com.results;
             this.popularAction = act.results;
-
-            console.log('trending', this.trendingMovies);
-            console.log('in theaters', this.inTheaters);
-            console.log('family', this.popularFamily);
-            console.log('comedy', this.popularComedy);
-            console.log('action', this.popularAction);
-
             this.isLoading = false;
         } catch (e) {
             console.log(e);    

@@ -1,7 +1,7 @@
 <template>
     <div class="navbar-section">
         <div class="navbar">
-            <span class="brand">
+            <span class="brand" onclick={goToHomeFn}>
                 <span class="slds-avatar slds-avatar_large img-wrapper">
                     <img alt="Person name" src={mvlogo} title="Person name" />
                 </span>
@@ -12,11 +12,11 @@
 
                 <div class="slds-form-element__control">
                     <input type="text" id="text-input-id-47" placeholder="Search Movies" class="slds-input" 
-                    onkeyup={handleInput} value={searchText}/>
+                    onkeyup={inputEntryFn} value={searchText}/>
                 </div>
 
                 <div class="search-button-wrapper">
-                    <button onclick={searchMovie} class="slds-button slds-button_icon slds-button_icon-border-filled" title="Search">
+                    <button onclick={searchMovieFn} class="slds-button slds-button_icon slds-button_icon-border-filled" title="Search">
                         <svg class="slds-button__icon" aria-hidden="true">
                         <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
                         </svg>

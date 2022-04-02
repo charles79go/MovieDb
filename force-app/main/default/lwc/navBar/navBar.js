@@ -7,7 +7,11 @@ export default class NavBar extends LightningElement {
     mvlogo = movieNightLogo;
     searchText = '';
 
-    handleInput(e) {
+    goToHomeFn(){
+        this.dispatchEvent(new CustomEvent('gohome'));
+    }
+
+    inputEntryFn(e) {
         if (e.keyCode === 13) {
             this.sendEvent(this.searchText);
             this.searchText = '';
@@ -16,7 +20,7 @@ export default class NavBar extends LightningElement {
         this.searchText = e.target.value;
     }
 
-    searchMovie(e){
+    searchMovieFn(e){
         this.sendEvent(this.searchText);
         this.searchText = '';
 

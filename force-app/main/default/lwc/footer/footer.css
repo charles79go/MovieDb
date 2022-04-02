@@ -3,4 +3,9 @@
     height: 8rem;
     margin-top: 2rem;
     color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

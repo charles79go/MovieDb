@@ -3,7 +3,7 @@
         <c-spinner></c-spinner>
     </template>
 
-    <c-nav-bar onsearchbtnclick={searchMoviesFn}></c-nav-bar>
+    <c-nav-bar onsearchbtnclick={searchMoviesFn} ongohome={returnToHomeFn}></c-nav-bar>
 
     <template if:false={showSearch}>
         <c-poster img={posterBg}></c-poster>
@@ -12,7 +12,11 @@
 
     <div class="main-section"> 
         <template if:true={showSearch}>
-            <div>search panel</div>
+            <c-search-canvas ongohome={returnToHomeFn} 
+                search-value={searchValue} 
+                search-results={searchResults}
+                image-base-url={imageBaseUrl}
+                ></c-search-canvas>
         </template>
         <template if:false={showSearch}>
             <c-group-set group-title="Trending Movies" movie-list={trendingMovies} image-base-url={imageBaseUrl}></c-group-set>

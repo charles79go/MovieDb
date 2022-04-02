@@ -45,8 +45,8 @@
     background: #fff;
     border-radius: 4px;
     cursor: pointer;
-    transition: .3s all;
+    transition: .2s all;
 }
 .search-button-wrapper:hover {
-    background: #b6b5b5;
+    background: #f1f1f1;
 }
