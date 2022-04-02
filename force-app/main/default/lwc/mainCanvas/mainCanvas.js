@@ -16,14 +16,15 @@ export default class MainCanvas extends LightningElement {
 
     isLoading = true;
 
-
-
     returnToHomeFn(){
+        window.scrollTo(0, 0);
         this.showSearch = false;
         this.searchValue = '';
     }
 
     async searchMoviesFn(e){
+
+        window.scrollTo(0, 0);
 
         let searchQuery = e.detail.trim();
 
