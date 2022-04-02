@@ -12,7 +12,8 @@
 
 .poster-headline {
     color: #ffffff;
-    font-size: 6rem;
+    line-height: 4.5rem;
+    font-size: 4rem;
     text-align: center;
     z-index: 10;
     position: absolute;

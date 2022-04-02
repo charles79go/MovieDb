@@ -3,6 +3,7 @@
     height: 8rem;
     margin-top: 2rem;
     color: #ffffff;
+    font-weight: 100;
 
     display: flex;
     flex-direction: column;

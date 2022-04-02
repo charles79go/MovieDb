@@ -22,3 +22,9 @@
     row-gap: 2rem;
     padding: 2rem 0;
 }
+
+@media screen and (max-width: 480px) {
+    .movie-cards-container {
+        justify-content: center;
+    }
+}
