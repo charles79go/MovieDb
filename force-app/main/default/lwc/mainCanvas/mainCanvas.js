@@ -25,9 +25,16 @@ export default class MainCanvas extends LightningElement {
 
     async searchMoviesFn(e){
 
-        let searchQuery = e.detail;
-        this.searchValue = e.detail;
+        let searchQuery = e.detail.trim();
 
+        if(searchQuery === '') {
+            this.searchValue = '';
+            this.searchResults = [];
+            this.showSearch = true;
+            return;
+        };
+
+        this.searchValue = searchQuery;
         this.isLoading = true;
 
         const getUrl = (query, page) => {
@@ -53,6 +60,8 @@ export default class MainCanvas extends LightningElement {
 
         } catch(e) {
             console.log('error', e)
+            this.searchResults = [];
+            this.showSearch = true;
             this.isLoading = false;
         }
     }

@@ -9,4 +9,10 @@ export default class SearchCanvas extends LightningElement {
     goToHomeFn(){
         this.dispatchEvent(new CustomEvent('gohome'));
     }
+
+    get searchMessage(){
+        return this.searchResults.length === 0 
+            ? `No Results for "${this.searchValue}"` 
+            : `Search Results for "${this.searchValue}"`;
+    }
 }
