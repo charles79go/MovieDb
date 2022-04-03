@@ -4,6 +4,7 @@ export default class MainCanvas extends LightningElement {
 
     sample = null;
     imageBaseUrl = 'https://image.tmdb.org/t/p/w500'
+    backdropBaseUrl = 'https://image.tmdb.org/t/p/original'
     trendingMovies = [];
     inTheaters = [];
     popularFamily = [];
@@ -127,14 +128,6 @@ export default class MainCanvas extends LightningElement {
 
 
     async connectedCallback(){
-
-        this.showPosterAndGroups = false;
-        this.showMovieDetails = true;
-        this.isLoading = false;
-
-        return;
-
-        //&with_release_type=2|3
 
         let trendingURl =
         'https://api.themoviedb.org/3/trending/movie/week?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&page=1';

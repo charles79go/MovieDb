@@ -26,7 +26,7 @@
             <c-group-set group-title="Popular Action Movies" movie-list={popularAction} image-base-url={imageBaseUrl}></c-group-set>
         </template>
         <template if:true={showMovieDetails}>
-            <c-movie-details ongoback={goBackPageFn} movie-details={movieDetails} image-base-url={imageBaseUrl}></c-movie-details>
+            <c-movie-details ongoback={goBackPageFn} movie-details={movieDetails} image-base-url={imageBaseUrl} backdrop-base-url={backdropBaseUrl}></c-movie-details>
         </template>
     </div>
     <c-footer></c-footer>

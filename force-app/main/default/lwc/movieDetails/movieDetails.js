@@ -1,9 +1,11 @@
 import { LightningElement, api } from 'lwc';
+import util from 'c/utils';
 
 export default class MovieDetails extends LightningElement {
 
     @api movieDetails;
-    @api imageBaseUrl
+    @api imageBaseUrl;
+    @api backdropBaseUrl;
 
     rendered = false;
     
@@ -12,7 +14,7 @@ export default class MovieDetails extends LightningElement {
     }
 
     get backdropImageSource(){
-        return this.imageBaseUrl + this.movieDetails.backdrop_path;
+        return this.backdropBaseUrl + this.movieDetails.backdrop_path;
     }
 
     get certification(){
@@ -23,6 +25,13 @@ export default class MovieDetails extends LightningElement {
     get casts(){
         let castMems = this.movieDetails.cast.map(cst => cst.name);
         return castMems.join(', ');
+    }
+    get genre(){
+        let gList = this.movieDetails.genres.map(g => g.name);
+        return gList.join(', ');
+    }
+    get releaseDate(){
+        return util.displayDate(this.movieDetails.release_date);
     }
 
     goBackFn(){

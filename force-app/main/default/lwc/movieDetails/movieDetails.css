@@ -1,12 +1,13 @@
 .movie-details-page {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
 .movie-details-card {
-    width: 1400px;
+    width: 1200px;
     height: 600px;
     position: relative;
     border-radius: 10px;
@@ -24,7 +25,7 @@
 
 .foreground {
     z-index: 10;
-    width: 50%;
+    width: 60%;
     padding: 1rem;
 }
 
@@ -43,7 +44,7 @@
 .background-image-overlay {
     z-index: 7;
     width: 100%;
-    background-image: linear-gradient(to right,#f9f9f9 ,#f9f9f9, transparent);
+    background-image: linear-gradient(70deg,#f9f9f9, #f9f9f9, transparent);
 }
 
 .top-container {
@@ -79,6 +80,41 @@
 .overview {
     font-size: 1.2rem;
     margin-bottom: 1rem;
+    height: 10rem;
+    overflow-y: auto;
 }
+
+.back-button {
+    margin-bottom: 2rem;
+    margin-right: auto;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 2px 5px 2px 0;
+    transition: .2s all;
+}
+
+.back-button:hover {
+    background-color: #f1f1f1;
+}
+
+.overview::-webkit-scrollbar {
+    height: 10px;                          
+}
+.overview::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+.overview::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #efecec;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.overview::-webkit-scrollbar-thumb:hover {
+    background: #b0afaf;
+}
+
 
 

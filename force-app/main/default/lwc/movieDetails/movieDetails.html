@@ -1,35 +1,44 @@
 <template>
     <div class="movie-details-page">
+
+        <div class="back-button" onclick={goBackFn}>
+            <span class="slds-icon_container slds-icon-utility-chevronleft" title="Back to Home">
+                <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></use>
+                </svg>
+                <span class="slds-assistive-text">Back</span>
+            </span>
+            <span class="back-botton-text">Back</span>
+        </div>
+
         <div class="movie-details-card">
 
-
-            <div class="background-image"><img src="https://image.tmdb.org/t/p/original/ewUqXnwiRLhgmGhuksOdLgh49Ch.jpg"></div>
+            <div class="background-image"><img src={backdropImageSource}></div>
 
             <div class="background-image-overlay"></div>
 
-
             <div class="foreground">
+
                 <div class="top-container">
                     <div class="img-box">
-                        <img src="https://image.tmdb.org/t/p/w500/wFjboE0aFZNbVOF05fzrka9Fqyx.jpg">
+                        <img src={posterImageSource}>
                     </div>
                     <div class="info">
-                        <div class="title">The Adam Project</div>
-                        <div>2022-03-11</div>
-                        <div>106 mins</div>
-                        <div class="classification">PG-13</div>
+                        <div class="title">{movieDetails.title}</div>
+                        <div>{releaseDate}</div>
+                        <div>{genre}</div>
+                        <div>{movieDetails.runtime} mins</div>
+                        <div class="classification">{certification}</div>
                     </div>
 
                 </div>
 
-                <div class="overview">After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self on a mission to save the future.</div>
+                <div class="overview">{movieDetails.overview}</div>
 
-
-                <div>Ryan Reynolds, Walker Scobell, Mark Ruffalo, Jennifer Garner, Zoe Saldana, Catherine Keener, Alex Mallari Jr.</div>
+                <div>Starring: {casts}</div>
             </div>
             
         </div>
-        <!-- <button onclick={goBackFn}>back</button> -->
     </div>
 </template>
 
