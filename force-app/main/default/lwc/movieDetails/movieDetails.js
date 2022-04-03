@@ -18,8 +18,12 @@ export default class MovieDetails extends LightningElement {
     }
 
     get certification(){
+        if(this.movieDetails.release_dates === null) return '--'
         let usCert = this.movieDetails.release_dates.results.find(release => release.iso_3166_1 === 'US');
-        return usCert.release_dates[0].certification;
+        // if 'US' cert found
+        if(usCert) return usCert.release_dates[0].certification;
+        // else
+        return 'Not Rated';
   
     }
     get casts(){

@@ -117,9 +117,11 @@ export default class MainCanvas extends LightningElement {
                 ...movieD,
                 cast: popularCasts
             }
+
             this.showSearch = false;
             this.showPosterAndGroups = false;
             this.showMovieDetails = true;
+            
         } catch(e) {
             console.log('error', e);
             this.goBackPageFn();
