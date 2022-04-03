@@ -19,7 +19,9 @@
                 <template for:each={searchResults} for:item="movie">
                     <c-movie-card key={movie.id} 
                         image-base-url={imageBaseUrl}
-                        movie-obj={movie}></c-movie-card>
+                        movie-obj={movie}
+                        movie-detail-back-ref="search page"
+                        ></c-movie-card>
                 </template>
             </div>
             

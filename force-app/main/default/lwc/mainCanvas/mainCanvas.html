@@ -5,12 +5,12 @@
 
     <c-nav-bar onsearchbtnclick={searchMoviesFn} ongohome={returnToHomeFn}></c-nav-bar>
 
-    <template if:false={showSearch}>
+    <template if:true={showPosterAndGroups}>
         <c-poster img={posterBg}></c-poster>
     </template>
 
 
-    <div class="main-section"> 
+    <div class="main-section" onfetchmoviedetails={fetchMovieDetailsFn}> 
         <template if:true={showSearch}>
             <c-search-canvas ongohome={returnToHomeFn} 
                 search-value={searchValue} 
@@ -18,12 +18,15 @@
                 image-base-url={imageBaseUrl}
                 ></c-search-canvas>
         </template>
-        <template if:false={showSearch}>
+        <template if:true={showPosterAndGroups}>
             <c-group-set group-title="Trending Movies" movie-list={trendingMovies} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="In Theaters" movie-list={inTheaters} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Popular Family Movies" movie-list={popularFamily} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Popular Comedy Movies" movie-list={popularComedy} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Popular Action Movies" movie-list={popularAction} image-base-url={imageBaseUrl}></c-group-set>
+        </template>
+        <template if:true={showMovieDetails}>
+            <c-movie-details ongoback={goBackPageFn} movie-details={movieDetails} image-base-url={imageBaseUrl}></c-movie-details>
         </template>
     </div>
     <c-footer></c-footer>

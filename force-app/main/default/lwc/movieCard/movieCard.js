@@ -4,6 +4,7 @@ import util from 'c/utils';
 export default class MovieCard extends LightningElement {
     @api imageBaseUrl;
     @api movieObj;
+    @api movieDetailBackRef;
 
     rendered = false;
 
@@ -13,6 +14,16 @@ export default class MovieCard extends LightningElement {
 
     get releaseDate() {
         return util.displayDate(this.movieObj.release_date);
+    }
+
+    sendMovieDetailsFn(){
+
+        let detail = {
+            backRef: this.movieDetailBackRef,
+            movieId: this.movieObj.id
+        }
+
+        this.dispatchEvent(new CustomEvent('fetchmoviedetails', {bubbles: true, composed: true, detail}));
     }
 
     renderedCallback(){

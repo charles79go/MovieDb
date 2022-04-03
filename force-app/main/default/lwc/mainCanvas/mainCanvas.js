@@ -9,17 +9,37 @@ export default class MainCanvas extends LightningElement {
     popularFamily = [];
     popularComedy = [];
     popularAction = [];
+    movieDetails = null;
 
     searchResults = [];
     searchValue = '';
     showSearch = false;
+    showMovieDetails = false;
+    showPosterAndGroups = true;
 
     isLoading = true;
+
+    backRef = 'home page';
+
+    goBackPageFn(e) {
+        this.showMovieDetails = false;
+        if(this.backRef === 'home page') {
+            this.showSearch = false;
+            this.showPosterAndGroups = true;
+        } else {
+            this.showSearch = true;
+            this.showPosterAndGroups = false;
+        }
+    }
 
     returnToHomeFn(){
         window.scrollTo(0, 0);
         this.showSearch = false;
+        this.showPosterAndGroups = true;
+        this.showMovieDetails = false;
         this.searchValue = '';
+        this.backRef = 'home page';
+
     }
 
     async searchMoviesFn(e){
@@ -57,18 +77,62 @@ export default class MainCanvas extends LightningElement {
                 ...page2.results,
                 ...page3.results ];
             this.showSearch = true;
+            this.showPosterAndGroups = false;
+            this.showMovieDetails = false;
             this.isLoading = false;
 
         } catch(e) {
             console.log('error', e)
             this.searchResults = [];
             this.showSearch = true;
+            this.showPosterAndGroups = false;
+            this.showMovieDetails = false;
             this.isLoading = false;
+        }
+    }
+
+    async fetchMovieDetailsFn(e) {
+        window.scrollTo(0, 0); //! ========================
+
+        this.backRef = e.detail.backRef;
+
+        let castUrl = `https://api.themoviedb.org/3/movie/${e.detail.movieId}/credits?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US`
+
+        let movieUrl = `https://api.themoviedb.org/3/movie/${e.detail.movieId}?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&append_to_response=release_dates`
+
+
+        try {
+            let responses = await Promise.all([
+                fetch(castUrl),
+                fetch(movieUrl)
+            ]);
+            let [cast, movieD] = responses;
+            cast = await cast.json();
+            movieD = await movieD.json();
+
+            let popularCasts = cast.cast.slice(0, 7);
+
+            this.movieDetails = {
+                ...movieD,
+                cast: popularCasts
+            }
+            this.showSearch = false;
+            this.showPosterAndGroups = false;
+            this.showMovieDetails = true;
+        } catch(e) {
+            console.log('error', e);
+            this.goBackPageFn();
         }
     }
 
 
     async connectedCallback(){
+
+        this.showPosterAndGroups = false;
+        this.showMovieDetails = true;
+        this.isLoading = false;
+
+        return;
 
         //&with_release_type=2|3
 
